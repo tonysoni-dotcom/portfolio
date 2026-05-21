@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center pt-20 bg-black">
@@ -9,9 +11,9 @@ export default function Home() {
           Frontend engineer building product experiences.
         </p>
         <p className="text-zinc-400 mb-4">I make cool shit, check some out below.</p>
-        <button className="bg-white text-black mb-8 px-4 py-2 rounded-md cursor-pointer hover:bg-zinc-200 transition-colors">
+        <Link href = "/projects" className="inline-block bg-white text-black mb-8 px-4 py-2 rounded-md cursor-pointer hover:bg-zinc-200 transition-colors">
           Check projects
-        </button>
+        </Link>
         <div className="flex gap-6 justify-center text-zinc-400">
           <a href="https://github.com/tonysoni-dotcom" className="hover:text-white underline">
             GitHub
