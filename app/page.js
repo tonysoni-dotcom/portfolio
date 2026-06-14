@@ -38,6 +38,9 @@ export default function Home() {
             Email
           </a>
         </div>
+        <Link className="bg-gray-500 px-3 py-1 inline-block hover: text-gray-100 hover:underline rounded-m" href="/counter">
+            Counter App
+        </Link>
       </div>
     </main>
   );
