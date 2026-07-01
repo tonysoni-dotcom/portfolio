@@ -3,7 +3,16 @@ export interface Project {
     name: string,
     description: string,
     featured: boolean,
-} 
+    projectStories? : ProjectStory[],
+}
+
+export interface ProjectStory {
+    situation: string,
+    task: string,
+    action: string,
+    result: string,
+    whatIdDoDifferently: string,
+}
 
 export const projects: Project[] = [
     {
