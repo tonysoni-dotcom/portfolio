@@ -50,5 +50,6 @@ function useLocalStorage<T>(key:string, value:T){
         }catch(err) {
             console.log("Error setting value to local storage");
         }
-    }, [state, value, key,])
+    }, [state, value, key,]);
+    return 
 }
