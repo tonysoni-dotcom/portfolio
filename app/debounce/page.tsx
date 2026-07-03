@@ -32,3 +32,23 @@ function useDebounce<T>(input :T, delay: number): T {
     }, [input, delay])
     return updatedValue;
 }
+
+function useLocalStorage<T>(key:string, value:T){
+    const [state, setState] = useState<T>(() => {
+        let localData = localStorage.getItem(key);
+        try{
+            let parsedLocalData:T = JSON.parse(localData);
+            return parsedLocalData;
+        }catch(err) {
+            return value;
+        }
+    });
+    useEffect(() => {
+        try{
+            let parsedJson:string = JSON.stringify(state);
+            localStorage.setItem(key, parsedJson);
+        }catch(err) {
+            console.log("Error setting value to local storage");
+        }
+    }, [state, value, key,])
+}
