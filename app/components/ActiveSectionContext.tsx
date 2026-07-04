@@ -3,14 +3,14 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 
 type ActiveSectionContextType = {
-    activeSection:number,
-    setActiveSection:(section: number) => void;
+    activeSection:string,
+    setActiveSection:(section: string) => void;
 }
 
 const ActiveSectionContext = createContext<ActiveSectionContextType | null>(null);
 
 export function ActiveSectionProvider({children} : {children: ReactNode}) {
-    const [activeSection, setActiveSection] = useState<number>(1);
+    const [activeSection, setActiveSection] = useState<string>("about");
 
     return (
         <ActiveSectionContext.Provider value = {{activeSection, setActiveSection}}>

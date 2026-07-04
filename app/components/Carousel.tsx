@@ -1,5 +1,3 @@
-"use client"
-
 const skills:string[] = [
     "Javascript",
     "Development",
@@ -16,17 +14,18 @@ export default function Carousel() {
         console.log(window.innerWidth, 'width');
     }
     return (
-        <div className="min-w-screen h-16 border-t-1 border-b-1 mt-25 md:mt-40 flex justify-center items-center overflow-hidden ">
-            <div className="flex items-center animate-marquee">
+        <section className="w-full h-16 border-t-1 border-b-1 mt-25 md:mt-40 flex justify-center items-center overflow-hidden ">
+            <ul className="flex items-center animate-marquee">
                 {
-                    [...skills,...skills, ...skills, ...skills, ...skills, ...skills, ...skills, ...skills, ...skills].map((skill, index) => {
-                        return <span className="text-md md:text-xl" key = {index}>
-                            <span className="mr-5 md:mr-5 text-gray-400">{skill.toUpperCase()}</span>
-                            <span className="mr-5 md:mr-5 text-gray-400">/</span>
-                        </span>
+                    // [...skills,...skills, ...skills, ...skills, ...skills, ...skills, ...skills, ...skills, ...skills, ...skills, ...skills, ...skills].map((skill, index) => {
+                    [...skills, ...skills, ...skills, ...skills].map((skill, index) => {
+                        return <li className="text-md md:text-xl" key = {index}>
+                            <span className="mr-5 text-gray-400">{skill.toUpperCase()}</span>
+                            <span className="mr-5 text-gray-400">/</span>
+                        </li>
                     })
                 }
-            </div>
-        </div>
+            </ul>
+        </section>
     )
 }
