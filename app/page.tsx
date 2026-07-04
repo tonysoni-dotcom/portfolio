@@ -2,6 +2,7 @@ import AboutSection from "./components/AboutSection";
 import Carousel from "./components/Carousel";
 import ExperiencesSection from "./components/ExperiencesSection";
 import HeroSection from "./components/HeroSection";
+import Projects from "./components/Projects";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <Carousel/>
       <AboutSection/>
       <ExperiencesSection/>
+      <Projects/>
     </main>
   );
 }

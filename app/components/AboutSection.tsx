@@ -3,7 +3,7 @@ import Carousel from "./Carousel"
 
 export default function AboutSection() {
     return (
-        <section>
+        <section id="about" className="scroll-mt-35">
             <h2 className="text-4xl flex justify-center items-center mt-15 md:mt-20 font-bold">
                 <span>About</span><span className="text-sky-300">.</span>
             </h2>
