@@ -23,7 +23,7 @@ export default function RootLayout({ children } : {children: React.ReactNode}) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} antialiased scroll-smooth`}
     >
       <body className="bg-black scroll-smooth text-white pb-10">
         <ActiveSectionProvider>
