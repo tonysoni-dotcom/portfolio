@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image";
 import { useState } from "react";
 import { ChevronDown } from "react-ionicons";
 
@@ -130,25 +131,75 @@ export default function Projects() {
 }
 
 function ProjectStory({story, openedSection, setOpenedSection} : {story: ProjectStory, openedSection: string, setOpenedSection: (section: string | Function) => void}) {
+    const isOpen = story.id == openedSection;
     return (
-        <button className="flex w-full text-left justify-between items-start border-b-1 border-b-zinc-700 p-3" onClick = {() => {
-            setOpenedSection((curr: string) => {
-                if(curr == story.id) {
-                    return null;
-                }else{
-                    return story?.id
-                }
-            });
-        }}>
-            <span className="text-lg">
-                {story?.title}
-            </span>
-            <div className={`${openedSection == story?.id ? "rotate-180" : ""} transition-all origin-center`}>
-                <ChevronDown
-                    color={'#00000'}
-                    height="20px"
-                />
+        <div className="border-b-1 border-b-zinc-700 p-3">
+            <button className="flex w-full text-left justify-between items-start hover:cursor-pointer" onClick = {() => {
+                setOpenedSection((curr: string) => {
+                    if(curr == story.id) {
+                        return null;
+                    }else{
+                        return story?.id
+                    }
+                });
+            }}>
+                <div>
+                    <div className="flex flex-col">
+                        <div className="flex flex-row justify-start gap-2 items-center">
+                            <Image
+                                src = {story.logo}
+                                alt = {"story_logo"}
+                                width = {15}
+                                height = {15}
+                                className={`${isOpen? "block" : "hidden"} rounded-full`}
+                            />
+                            <span className={`text-sm ${isOpen? "" : "hidden"} transition-all duration-400 text-gray-500`}>{story?.client}</span>
+                        </div>
+                        <span className={`transition-all ${isOpen? "text-xl md:text-3xl font-semibold" : "text-lg"}`}>
+                            {story?.title}
+                        </span>
+                    </div>
+                </div>
+                <div className={`${isOpen ? "rotate-180" : ""} transition-all origin-center duration-400`}>
+                    <ChevronDown
+                        color={'#00000'}
+                        height="20px"
+                    />
+                </div>
+            </button>
+            <div className={`grid transition-all duration-400 ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+                <div className="overflow-hidden">
+                    <div>
+                        {
+                            story.techStack.map((tech, index) => {
+                                return (
+                                    <span key = {story.title + tech} className="text-gray-500 text-sm">{tech}{index!==story.techStack.length-1? ", " : ""}</span>
+                                )
+                            })
+                        }
+                    </div>
+                    <div>
+                        <span className="font-semibold">Situation : </span>
+                        <span>{story.caseStudy.situation}</span>
+                    </div>
+                    <div>
+                        <span className="font-semibold">Task : </span>
+                        <span>{story.caseStudy.task}</span>
+                    </div>
+                    <div>
+                        <span className="font-semibold">Action : </span>
+                        <span>{story.caseStudy.action}</span>
+                    </div>
+                    <div>
+                        <span className="font-semibold">Result : </span>
+                        <span>{story.caseStudy.result}</span>
+                    </div>
+                    <div>
+                        <span className="font-semibold">Reflection : </span>
+                        <span>{story.caseStudy.reflection}</span>
+                    </div>
+                </div>
             </div>
-        </button>
+        </div>
     )
 }
