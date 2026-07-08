@@ -27,7 +27,7 @@ export default function RootLayout({ children } : {children: React.ReactNode}) {
     >
       <body className="bg-black scroll-smooth text-white pb-10">
         <ActiveSectionProvider>
-          <Header/>
+          {/* <Header/> */}
           {children}
         </ActiveSectionProvider> 
       </body>
