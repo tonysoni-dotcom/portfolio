@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import { ActiveSectionProvider } from "./components/ActiveSectionContext";
 import React from "react";
+import TableProvider from "./components/TableContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,10 +27,12 @@ export default function RootLayout({ children } : {children: React.ReactNode}) {
       className={`${geistSans.variable} ${geistMono.variable} antialiased scroll-smooth`}
     >
       <body className="bg-black scroll-smooth text-white pb-10">
-        <ActiveSectionProvider>
-          <Header/>
-          {children}
-        </ActiveSectionProvider> 
+        <TableProvider>
+          <ActiveSectionProvider>
+            {/* <Header/> */}
+            {children}
+          </ActiveSectionProvider> 
+        </TableProvider>
       </body>
     </html>
   );

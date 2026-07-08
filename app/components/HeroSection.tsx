@@ -22,7 +22,7 @@ export default function HeroSection() {
         <section className="w-full md:max-w-5xl md:mx-auto px-3 flex flex-col-reverse md:flex-row justify-center items-center gap-5 md:gap-10 lg:gap-50 md:mt-30 lg:mt-40 xl:mt-40 xl:gap-50">
             <div className="relative">
                 <div className="w-55 h-55 md:w-75 md:h-75 border-4 border-sky-300 border-l-sky-400 border-r-sky-200 flex justify-center items-center">
-                    <Image src = {"/laptop.gif"} alt = "laptop.gif" width={40} height = {40} className="w-40 h-40 md:w-50 md:h-50 w-auto h-auto"/>
+                    <Image src = {"/laptop.gif"} alt = "laptop.gif" width={170} height = {170}/>
                 </div>
                 <div className="absolute text-3xl w-15 h-10 -right-7.5 -bottom-5 md:text-7xl md:w-30 md:h-20 md:-right-15 md:-bottom-10 font-bold bg-black flex justify-center items-center">
                     {"</>"}
