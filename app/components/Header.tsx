@@ -72,7 +72,7 @@ export default function Header() {
                         {
                             navItems.map((item) => {
                                 return (
-                                    <li key = {item?.id} onClick = {() => {setActiveSection(item.id)}} className={`
+                                    <li key = {item?.id} className={`
                                         hover:text-sky-300 transition-all 
                                         lg:mx-12
                                         md:mx-7
@@ -102,7 +102,7 @@ export default function Header() {
                         {
                             navItems.map((item) => {
                                 return (
-                                    <li key = {item?.id} onClick = {() => {setActiveSection(item.id)}} className={`
+                                    <li key = {item?.id} className={`
                                         hover:text-sky-300 transition-all 
                                         lg:mx-12
                                         md:mx-7
