@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import { ActiveSectionProvider } from "./components/ActiveSectionContext";
 import React from "react";
+import { IntersectionProvider } from "./components/IntersectionProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,8 +28,10 @@ export default function RootLayout({ children } : {children: React.ReactNode}) {
     >
       <body className="bg-black scroll-smooth text-white pb-10">
         <ActiveSectionProvider>
-          <Header/>
-          {children}
+          <IntersectionProvider>
+            <Header/>
+            {children}
+          </IntersectionProvider>
         </ActiveSectionProvider> 
       </body>
     </html>

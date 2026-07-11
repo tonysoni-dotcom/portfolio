@@ -1,5 +1,6 @@
 import React from "react"
 import { ArrowForwardCircle, Document, LogoGithub, LogoLinkedin, Mail } from "react-ionicons"
+import AttachRef from "./AttachRef";
 
 type Contact = {
     name:string,
@@ -32,20 +33,22 @@ const contactBoxes: Contact[] = [
 
 export default function ContactSection(){
     return (
-        <section id = "contact-me" className="scroll-mt-25 p-10 md:max-w-6xl md:mx-auto">
-            <h2 className="text-4xl flex justify-center items-center mt-10 md:mt-20 font-bold mb-5">
-                <span>Contact Me</span><span className="text-sky-300">.</span>
-            </h2>
-            <div className="flex flex-col justify-center items-center md:flex-row md:flex-wrap gap-2">
-                {
-                    contactBoxes.map((contact,index) => {
-                        return (
-                            <LinkComp key = {contact.name} link = {contact.link} name = {contact.name} Logo = {contact.Logo}/>
-                        )
-                    })
-                }
-            </div>
-        </section>
+        <AttachRef name = "contact-me">
+            <section id = "contact-me" className="scroll-mt-25 p-10 md:max-w-6xl md:mx-auto">
+                <h2 className="text-4xl flex justify-center items-center mt-10 md:mt-20 font-bold mb-5">
+                    <span>Contact Me</span><span className="text-sky-300">.</span>
+                </h2>
+                <div className="flex flex-col justify-center items-center md:flex-row md:flex-wrap gap-2">
+                    {
+                        contactBoxes.map((contact,index) => {
+                            return (
+                                <LinkComp key = {contact.name} link = {contact.link} name = {contact.name} Logo = {contact.Logo}/>
+                            )
+                        })
+                    }
+                </div>
+            </section>
+        </AttachRef>
     )
 }
 

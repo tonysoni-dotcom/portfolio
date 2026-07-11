@@ -3,6 +3,7 @@
 import { ReorderThree } from "react-ionicons";
 import { useActiveSection } from "./ActiveSectionContext"
 import { useEffect, useRef, useState } from "react";
+import useIntersection from "./useIntersection";
 
 const navItems = [
     {
@@ -28,6 +29,7 @@ const navItems = [
 ]
 
 const divTranslate = {
+    "hero": "lg:translate-x-6 md:translate-x-0",
     "about": "lg:translate-x-6 md:translate-x-0",
     "experiences": "lg:translate-x-45.5 md:translate-x-30.5",
     "projects": "lg:translate-x-88 md:translate-x-63",
@@ -39,6 +41,10 @@ export default function Header() {
     const [mobileHeaderShown, setMobileHeaderShown] = useState<boolean>(false);
     const burgerRef = useRef<HTMLButtonElement | null>(null);
     const dropdownRef = useRef<HTMLDivElement | null>(null);
+    const {entry} : {entry:string} = useIntersection();
+    useEffect(() => {
+        setActiveSection(entry)
+    }, [entry])
     useEffect(() => {
         const listener: any = window.addEventListener("click", (e: MouseEvent) => {
             if(!burgerRef.current?.contains(e.target as Node) && !dropdownRef.current?.contains(e.target as Node)){

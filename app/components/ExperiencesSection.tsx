@@ -1,5 +1,6 @@
 import Image from "next/image"
 import React from "react"
+import AttachRef from "./AttachRef"
 
 type Experience = {
     startDate: string,
@@ -21,20 +22,22 @@ const experiences:Experience[] = [
 
 export default function ExperiencesSection() {
     return (
-        <section id = "experiences" className="scroll-mt-12">
-            <h2 className="text-4xl flex justify-center items-center mt-10 md:mt-20 font-bold">
-                <span>Experiences</span><span className="text-sky-300">.</span>
-            </h2>
-            <div>
-                {
-                    experiences?.map((exp, ind) => {
-                        return (
-                            <ExperienceItem exp = {exp} key = {ind}/>
-                        )
-                    })
-                }
-            </div>
-        </section>
+        <AttachRef name = "experiences">
+            <section id = "experiences" className="scroll-mt-40">
+                <h2 className="text-4xl flex justify-center items-center mt-10 md:mt-20 font-bold">
+                    <span>Experiences</span><span className="text-sky-300">.</span>
+                </h2>
+                <div>
+                    {
+                        experiences?.map((exp, ind) => {
+                            return (
+                                <ExperienceItem exp = {exp} key = {ind}/>
+                            )
+                        })
+                    }
+                </div>
+            </section>
+        </AttachRef>
     )
 }
 

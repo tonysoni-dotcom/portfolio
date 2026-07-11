@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { ChevronDown } from "react-ionicons";
+import AttachRef from "./AttachRef";
 
 type ProjectStory = {
     id: string,
@@ -110,23 +111,25 @@ const projectStories: ProjectStory[] = [
 export default function Projects() {
     const [openedSection, setOpenedSection] = useState<string | null>(null)
     return (
-        <section id = "projects" className="scroll-mt-25 p-10 md:max-w-6xl md:mx-auto">
-            <h2 className="text-4xl flex justify-center items-center mt-10 md:mt-20 font-bold mb-5">
-                <span>Project Stories</span><span className="text-sky-300">.</span>
-            </h2>
-            {
-                projectStories.map((project) => {
-                    return (
-                        <ProjectStory 
-                            key = {project?.id} 
-                            story = {project} 
-                            openedSection = {openedSection} 
-                            setOpenedSection = {setOpenedSection}
-                        />
-                    )
-                })
-            }
-        </section>
+        <AttachRef name = "projects">
+            <section id = "projects" className="scroll-mt-25 p-10 md:max-w-6xl md:mx-auto">
+                <h2 className="text-4xl flex justify-center items-center mt-10 md:mt-20 font-bold mb-5">
+                    <span>Project Stories</span><span className="text-sky-300">.</span>
+                </h2>
+                {
+                    projectStories.map((project) => {
+                        return (
+                            <ProjectStory 
+                                key = {project?.id} 
+                                story = {project} 
+                                openedSection = {openedSection} 
+                                setOpenedSection = {setOpenedSection}
+                            />
+                        )
+                    })
+                }
+            </section>
+        </AttachRef>
     )
 }
 
