@@ -1,22 +1,20 @@
-import AboutSection from "./components/AboutSection";
-import Carousel from "./components/Carousel";
-import ContactSection from "./components/ContactSection";
-import ExperiencesSection from "./components/ExperiencesSection";
-import HeroSection from "./components/HeroSection";
-import Projects from "./components/Projects";
+"use client"
 
-// import IntersectionObserver from "./components/intersectionObserver";
+import { useCallback, useRef } from "react";
+import useOnClickOutside from "./components/useOnClickOutside";
 
 export default function Home() {
+
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  let callback = useCallback(() => {
+    console.log('clicked outside')
+  }, []);
+
+  useOnClickOutside(ref, callback);
   return (
-    // <main className="min-h-screen flex flex-col items-center bg-black">
-    <main>
-      <HeroSection/>
-      <Carousel/>
-      <AboutSection/>
-      <ExperiencesSection/>
-      <Projects/>
-      <ContactSection/>
+    <main className="w-full min-h-screen flex justify-center items-center">
+      <div className="w-20 h-20 bg-white" ref = {ref}></div>
     </main>
   );
 }

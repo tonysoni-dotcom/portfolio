@@ -1,9 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "./components/Header";
-import { ActiveSectionProvider } from "./components/ActiveSectionContext";
 import React from "react";
-import { IntersectionProvider } from "./components/IntersectionProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,12 +24,7 @@ export default function RootLayout({ children } : {children: React.ReactNode}) {
       className={`${geistSans.variable} ${geistMono.variable} antialiased scroll-smooth`}
     >
       <body className="bg-black scroll-smooth text-white pb-10">
-        <ActiveSectionProvider>
-          <IntersectionProvider>
-            <Header/>
-            {children}
-          </IntersectionProvider>
-        </ActiveSectionProvider> 
+        {children}
       </body>
     </html>
   );
