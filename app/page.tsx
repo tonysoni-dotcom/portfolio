@@ -1,26 +1,93 @@
+// "use client"
+
+// import { use, useState, useTransition } from "react";
+// import Table from "./components/Table";
+// import { ThemeContext } from "./components/ThemeContext";
+
+// const defaultTableData = Array.from({length: 5000}, (_, i) => ({
+//   id: i,
+//   text: `Text ${i}`,
+//   Name: `Name ${i}`,
+//   Time: `Time ${i}`,
+//   Age: `Age ${i}`,
+//   Date: `Date ${i}`,
+//   Temp: `temp ${i}`,
+// }))
+
+// export default function Home() {
+//   const [data,setData] = useState(defaultTableData);
+//   const [query, setQuery] = useState("");
+//   const [filteredData, setFilteredData] = useState(defaultTableData);
+
+//   const [isPending, startTransition] = useTransition();
+
+//   const handleChange = (e) => {
+//     setQuery(e.target.value);
+
+//     startTransition(() => {
+//       setFilteredData(data.filter(item => {
+//         let q = e.target.value;
+//         if(!q.length) return true;
+//         let vals = Object.values(item);
+//         for(let val of vals) {
+//           if(val.toString().toLowerCase().includes(q.toLowerCase())) {
+//             return true;
+//           }
+//         }
+//         return false;
+//       }))
+//     })
+//   }
+
+//   return (
+//     <main className="bg-black min-h-screen flex justify-center items-center flex-col">
+//       {/* <input value={query} onChange={handleChange} placeholder="Search..." className="border-1 rounded-sm"/>
+//       {
+//         isPending?
+//         <span>Loading...</span>
+//         :
+//         <Table
+//           data = {filteredData}
+//         />
+//       } */}
+//       <Consumer shouldRead={true}/>
+//     </main>
+//   )
+// }
+
+// function Consumer({ shouldRead }) {
+//   console.log('Consumer rendered');
+//   if (shouldRead) {
+//     const theme = use(ThemeContext);
+//     return <div>{theme}</div>;
+//   }
+//   return <div>Not reading theme</div>;
+// }
 "use client"
 
-import { useRef, useState } from "react";
-import usePrevious from "./components/usePrevious";
-import useEventListener from "./components/useEventListener";
+import { use, useState, useContext } from 'react';
+import { ThemeContext } from './components/ThemeContext';
+
+function Consumer({ shouldRead }: { shouldRead: boolean }) {
+  console.log('Consumer rendered, shouldRead:', shouldRead);
+  
+  if (shouldRead) {
+    const theme = use(ThemeContext);
+    return <div>Reading theme: {theme}</div>;
+  }
+  
+  return <div>Not reading theme</div>;
+}
 
 export default function Home() {
-  const [count, setCount] = useState<number>(0);
-  const previous = usePrevious<number>(count);
-  console.log(previous);
-
-  const prevRef = useRef<HTMLButtonElement | null>(null);
-  const nextRef = useRef<HTMLButtonElement | null>(null);
-
-  useEventListener("click", () => {setCount(count-1)}, prevRef)
-  useEventListener("click", () => {setCount(count+1)}, nextRef)
+  const [shouldRead, setShouldRead] = useState(false);
   
   return (
-    <main className="w-full min-h-screen flex justify-center items-center gap-2">
-      <span>Previous value : {previous}</span>
-      <button ref = {prevRef} className="w-10 h-10 border-[1px] rounded-full border-gray-500 text-2xl">-</button>
-      <span className="w-10 h-10 flex justify-center items-center">{count}</span>
-      <button ref = {nextRef} className="w-10 h-10 border-[1px] rounded-full border-gray-500 text-2xl">+</button>
+    <main>
+      <button onClick={() => setShouldRead(s => !s)}>
+        Toggle shouldRead (currently: {String(shouldRead)})
+      </button>
+      <Consumer shouldRead={shouldRead} />
     </main>
   );
 }

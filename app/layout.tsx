@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import React from "react";
+import Provider from "./components/ThemeContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,7 +25,9 @@ export default function RootLayout({ children } : {children: React.ReactNode}) {
       className={`${geistSans.variable} ${geistMono.variable} antialiased scroll-smooth`}
     >
       <body className="bg-black scroll-smooth text-white pb-10">
-        {children}
+        <Provider>
+            {children}
+        </Provider>
       </body>
     </html>
   );
