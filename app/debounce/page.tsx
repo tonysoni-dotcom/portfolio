@@ -52,3 +52,56 @@ function useLocalStorage<T>(key:string, value:T){
         }
     }, [state, value, key,])
 }
+
+function debounce<T extends Function>(fn: T, delay: number): Function {
+    let timeout:(null | NodeJS.Timeout) = null;
+    return function(...args : any[]) {
+        if(timeout) {
+            clearInterval(timeout);
+        }
+        let context = this;
+        timeout = setTimeout(() => {
+            // fn(...args);
+            console.log(this, 'this inside arrow')
+            fn.apply(this, args);
+        }, delay)
+        // timeout = setTimeout(fn.bind(context, ...args), delay)
+    }
+}
+
+function throttle<T extends Function>(fn: T, delay: number): Function {
+    let timeout:(null | NodeJS.Timeout) = null;
+    let timerRunning:boolean = false;
+    console.log('this inside throttle', this)
+    return function(...args : any[]) {
+        if(!timerRunning) {
+            fn.call(this, ...args);
+            timerRunning = true;
+            timeout = setTimeout(() => {
+                timerRunning = false;
+            }, delay)
+        }
+    }
+}
+
+
+
+// const obj = {
+//     name: 'Vishnu',
+//     greet: debounce(function() { console.log(this?.name); }, 500)
+// };
+const obj = {
+    name: 'Vishnu',
+    greet: debounce(function(msg?:string) { console.log(this?.name, msg); }, 500)
+};
+
+obj.greet();
+obj.greet();
+obj.greet();
+
+setTimeout(() => {
+    obj.greet();
+}, 300)
+setTimeout(() => {
+    obj.greet();
+}, 901)
